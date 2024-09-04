@@ -1,6 +1,6 @@
 ### Description
 
-A simple chrome extension for downloading IEX price data
+A simple chrome extension for downloading IEX(Indian Energy Exchange) price data
 
 ### How To Run
 
