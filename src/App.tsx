@@ -1,11 +1,15 @@
+import { ChakraProvider } from "@chakra-ui/react";
 import "./App.css";
 import DownloadButton from "./components/DownloadButton";
+import DownloadForm from "./components/DownloadForm";
 
 function App() {
   return (
-    <div className="card">
-      <DownloadButton />
-    </div>
+    <ChakraProvider>
+      <div className="card">
+        <DownloadForm></DownloadForm>
+      </div>
+    </ChakraProvider>
   );
 }
 
