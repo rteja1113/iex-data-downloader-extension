@@ -1,24 +1,16 @@
-import React from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 import {
-  Input,
   Button,
   FormControl,
-  FormLabel,
   FormErrorMessage,
+  FormLabel,
+  Input,
   Text,
 } from "@chakra-ui/react";
-
-const schema = z.object({
-  lookback: z
-    .number()
-    .min(1, "Lookback period must be at least 1 day")
-    .max(365, "Lookback period cannot exceed 365 days"),
-});
-
-type FormData = z.infer<typeof schema>;
+import { zodResolver } from "@hookform/resolvers/zod";
+import React from "react";
+import { useForm } from "react-hook-form";
+import FormData, { formSchema } from "../entities/formData";
+import { onSubmitHandler } from "../handlers/formHandler";
 
 const Form: React.FC = () => {
   const {
@@ -26,13 +18,8 @@ const Form: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(formSchema),
   });
-
-  const onSubmitHandler = (data: FormData) => {
-    // Implement the download logic using the `lookback` value
-    console.log(`Downloading data for the past ${data.lookback} days`);
-  };
 
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)}>
