@@ -31,7 +31,7 @@ export const onSubmitHandler = async (data: FormData) => {
     // call the API to upload data to S3
     const uploadResponse = await axios
       .post(apiGatewayUrl, {
-        data: downloadedData,
+        data: { body: downloadedData },
       })
       .catch((error) =>
         console.error(`Error uploading data to S3 due to: ${error}`)
