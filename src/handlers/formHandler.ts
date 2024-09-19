@@ -34,15 +34,14 @@ export const onSubmitHandler = async (data: FormData) => {
       continue;
     }
     const uploadResponse = await axios
-      .post(apiGatewayUrl, {
-        data: { body: downloadedData },
+      .post(apiGatewayUrl, { body: downloadedData })
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(`Data uploaded to S3 for date: ${date}`);
+        }
       })
       .catch((error) =>
         console.error(`Error uploading data to S3 due to: ${error}`)
       );
-
-    if (uploadResponse?.status === 200) {
-      console.log("Data uploaded successfully to S3 for date: ", date);
-    }
   }
 };
