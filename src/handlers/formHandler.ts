@@ -29,6 +29,10 @@ export const onSubmitHandler = async (data: FormData) => {
       });
 
     // call the API to upload data to S3
+    if (!downloadedData) {
+      console.log("No data found for date: ", date);
+      continue;
+    }
     const uploadResponse = await axios
       .post(apiGatewayUrl, {
         data: { body: downloadedData },
